@@ -1,1 +1,5 @@
-@import "styles/main";
+@use '@angular/material' as mat;
+
+@import 'styles/main';
+
+@include mat.core();

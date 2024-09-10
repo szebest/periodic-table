@@ -3,7 +3,7 @@ body {
   height: 100%;
 }
 body {
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -19,9 +19,7 @@ body {
 
 img,
 picture,
-video,
-canvas,
-svg {
+video {
   display: block;
   max-width: 100%;
 }
