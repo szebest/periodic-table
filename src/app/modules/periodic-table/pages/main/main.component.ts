@@ -13,5 +13,5 @@ import { PeriodicElementsTableComponent } from '../../components';
 export class MainComponent {
   private readonly periodicElementsData = inject(PeriodicElementDataService);
 
-  periodicElements = this.periodicElementsData.periodicElements;
+  readonly periodicElements = this.periodicElementsData.periodicElements;
 }
