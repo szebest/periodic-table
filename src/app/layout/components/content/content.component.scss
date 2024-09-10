@@ -1,10 +1,10 @@
-@import "core/variables";
+@import 'core/variables';
 
 :host {
   .container {
     display: flex;
     justify-content: center;
-    margin: $spacing-8;
+    margin: $spacing-16 $spacing-8;
 
     &__wrapper {
       max-width: 1920px;

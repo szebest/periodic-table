@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 
 import { DefaultLayoutComponent } from './layout';
-import { AppComponent } from './app.component';
 
 export const routes: Routes = [
   {
@@ -10,8 +9,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        // TODO: add default view here, for now it is just AppComponent
-        component: AppComponent,
+        loadChildren: () => import('./modules/periodic-table').then((r) => r.routes),
       },
       {
         path: '**',
