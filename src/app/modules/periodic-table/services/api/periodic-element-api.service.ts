@@ -7,6 +7,6 @@ import { ELEMENT_DATA } from '../../mock';
 export class PeriodicElementApiService {
   getPeriodicElements() {
     // Simulate call to backend with 2000ms delay
-    return of(ELEMENT_DATA).pipe(delay(2000));
+    return of(ELEMENT_DATA).pipe(delay(0));
   }
 }

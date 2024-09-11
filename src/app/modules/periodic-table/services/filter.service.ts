@@ -8,6 +8,7 @@ import {
   filter,
   map,
   skip,
+  startWith,
   tap,
   timer,
 } from 'rxjs';
@@ -45,6 +46,7 @@ export class FilterService {
             },
           })
       ),
+      startWith(this.filterValue.value),
       distinctUntilChanged()
     )
   );

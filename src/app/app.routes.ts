@@ -13,7 +13,7 @@ export const routes: Routes = [
       },
       {
         path: '**',
-        redirectTo: '',
+        redirectTo: '', // TODO: Probably should render some kind of 404 page
         pathMatch: 'full',
       },
     ],
