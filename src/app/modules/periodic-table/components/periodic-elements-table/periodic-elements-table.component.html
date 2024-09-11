@@ -1,5 +1,5 @@
-@let dataSource = data(); @if (dataSource) {
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+@let source = dataSource(); @if (source) {
+<table mat-table [dataSource]="source" class="mat-elevation-z1">
   <!-- Position -->
   <ng-container matColumnDef="position">
     <th mat-header-cell *matHeaderCellDef>No.</th>

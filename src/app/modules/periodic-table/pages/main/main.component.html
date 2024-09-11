@@ -1,1 +1,5 @@
-<app-periodic-elements-table [data]="periodicElements()" />
+<div class="main-page-wrapper">
+  <app-filter (filterChange)="onFilterChange($event)" [value]="currentFilterValue()" />
+
+  <app-periodic-elements-table [data]="periodicElements()" [filter]="filter()" />
+</div>

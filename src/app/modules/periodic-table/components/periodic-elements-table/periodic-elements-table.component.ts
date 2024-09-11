@@ -1,6 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, effect, input } from '@angular/core';
 
-import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { PeriodicElement } from '../../models';
@@ -14,6 +14,25 @@ import { PeriodicElement } from '../../models';
 })
 export class PeriodicElementsTableComponent {
   readonly data = input.required<PeriodicElement[] | null>();
+  readonly filter = input<string>();
 
   readonly displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+
+  readonly dataSource = computed(() => {
+    const data = this.data();
+    if (!data) return null;
+
+    return new MatTableDataSource(data);
+  });
+
+  constructor() {
+    effect(() => {
+      const dataSource = this.dataSource();
+      const filter = this.filter();
+
+      if (!dataSource || filter === undefined) return;
+
+      dataSource.filter = filter;
+    });
+  }
 }
