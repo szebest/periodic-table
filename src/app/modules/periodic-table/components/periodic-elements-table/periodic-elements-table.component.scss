@@ -1,4 +1,9 @@
 :host {
+  .cell {
+    width: 25%;
+    cursor: pointer;
+  }
+
   .spinner-wrapper {
     display: flex;
     justify-content: center;
