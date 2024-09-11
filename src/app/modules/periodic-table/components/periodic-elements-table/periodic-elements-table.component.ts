@@ -16,8 +16,9 @@ export class PeriodicElementsTableComponent {
   readonly data = input.required<PeriodicElement[] | null>();
   readonly filter = input<string>();
 
-  readonly displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  readonly displayedColumns: string[] = ['Number', 'Name', 'Weight', 'Symbol'];
 
+  // Create new mat table data source when the data input changes
   readonly dataSource = computed(() => {
     const data = this.data();
     if (!data) return null;
@@ -26,6 +27,7 @@ export class PeriodicElementsTableComponent {
   });
 
   constructor() {
+    // Update the filter of the data source when the data source or the filter changes
     effect(() => {
       const dataSource = this.dataSource();
       const filter = this.filter();

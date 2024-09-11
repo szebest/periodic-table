@@ -50,6 +50,7 @@ export class FilterService {
   );
 
   constructor() {
+    // If the url changes and it is different from the current filter then proceed to update the filter
     this.activatedRoute.queryParamMap
       .pipe(
         map((x) => x.get(FILTER_QUERY_PARAMS_NAME)),
