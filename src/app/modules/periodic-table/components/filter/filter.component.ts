@@ -11,9 +11,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   styleUrl: './filter.component.scss',
 })
 export class FilterComponent {
-  value = input<string>();
+  readonly value = input<string | null>();
 
-  filterChange = output<string>();
+  readonly filterChange = output<string>();
 
   onFilterChange(event: Event) {
     if (!event.target) return;

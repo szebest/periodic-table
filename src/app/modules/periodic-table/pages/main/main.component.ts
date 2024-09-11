@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 
 import { FilterService, PeriodicElementDataService } from '../../services';
 import { PeriodicElementsTableComponent, FilterComponent } from '../../components';
+import { PeriodicDataElement } from '../../models';
 
 @Component({
   selector: 'app-main',
@@ -20,5 +21,9 @@ export class MainComponent {
 
   onFilterChange(filter: string) {
     this.filterService.updateFilter(filter);
+  }
+
+  onEditPeriodicElement(element: PeriodicDataElement) {
+    this.periodicElementsData.editPeriodicElement(element);
   }
 }

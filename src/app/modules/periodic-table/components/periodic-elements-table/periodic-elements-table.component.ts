@@ -1,9 +1,12 @@
-import { Component, computed, effect, input } from '@angular/core';
+import { Component, computed, effect, inject, input, output } from '@angular/core';
+import { filter, tap } from 'rxjs';
 
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialog } from '@angular/material/dialog';
 
-import { PeriodicElement } from '../../models';
+import { EditCellDialogInput, PeriodicDataElement, PeriodicElement } from '../../models';
+import { ModifyCellDialogComponent } from '../../dialogs';
 
 @Component({
   selector: 'app-periodic-elements-table',
@@ -13,10 +16,33 @@ import { PeriodicElement } from '../../models';
   styleUrl: './periodic-elements-table.component.scss',
 })
 export class PeriodicElementsTableComponent {
-  readonly data = input.required<PeriodicElement[] | null>();
-  readonly filter = input<string>();
+  readonly dialog = inject(MatDialog);
 
-  readonly displayedColumns: string[] = ['Number', 'Name', 'Weight', 'Symbol'];
+  readonly data = input.required<PeriodicElement[] | null>();
+  readonly filter = input<string | null>();
+
+  readonly editPeriodicElement = output<PeriodicDataElement>();
+
+  readonly columns: { header: string; propertyName: keyof PeriodicElement }[] = [
+    {
+      header: 'Number',
+      propertyName: 'position',
+    },
+    {
+      header: 'Name',
+      propertyName: 'name',
+    },
+    {
+      header: 'Weight',
+      propertyName: 'weight',
+    },
+    {
+      header: 'Symbol',
+      propertyName: 'symbol',
+    },
+  ];
+
+  readonly displayedColumns = this.columns.map((c) => c.propertyName);
 
   // Create new mat table data source when the data input changes
   readonly dataSource = computed(() => {
@@ -32,9 +58,23 @@ export class PeriodicElementsTableComponent {
       const dataSource = this.dataSource();
       const filter = this.filter();
 
-      if (!dataSource || filter === undefined) return;
+      if (!dataSource) return;
 
-      dataSource.filter = filter;
+      dataSource.filter = filter ?? '';
     });
+  }
+
+  editCell(data: EditCellDialogInput) {
+    const dialogRef = this.dialog.open(ModifyCellDialogComponent, {
+      data,
+    });
+
+    dialogRef
+      .afterClosed()
+      .pipe(
+        filter(Boolean),
+        tap((x: PeriodicDataElement) => this.editPeriodicElement.emit({ ...x }))
+      )
+      .subscribe();
   }
 }

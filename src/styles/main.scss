@@ -1,5 +1,7 @@
-@use "@angular/material" as mat;
+@use '@angular/material' as mat;
 
 @include mat.core();
 
-@import "core/reset", "core/variables";
+@import 'core/reset', 'core/variables';
+
+@import 'utils/utils';

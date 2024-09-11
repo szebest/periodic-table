@@ -4,3 +4,5 @@ export type PeriodicElement = {
   weight: number;
   symbol: string;
 };
+
+export type PeriodicDataElement = PeriodicElement & { id: number };
