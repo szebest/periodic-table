@@ -1,0 +1,8 @@
+@import 'core/variables';
+
+:host {
+  .main-page-wrapper {
+    display: grid;
+    gap: $spacing-24;
+  }
+}
