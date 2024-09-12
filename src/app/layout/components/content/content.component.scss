@@ -4,7 +4,7 @@
   .container {
     display: flex;
     justify-content: center;
-    margin: $spacing-16 $spacing-8;
+    padding: $spacing-16 $spacing-8;
 
     &__wrapper {
       max-width: 1920px;
